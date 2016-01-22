@@ -148,9 +148,11 @@ final class YearMonth private (year: Int, month: Int)
     }
   }
 
+  override def minus(amount: TemporalAmount): YearMonth =
+    super.minus(amount).asInstanceOf[YearMonth]
+
   override def minus(amount: Long, unit: TemporalUnit): YearMonth =
-    if (amount != Long.MinValue) plus(-amount, unit)
-    else plus(Long.MaxValue, unit).plus(1, unit)
+    super.minus(amount, unit).asInstanceOf[YearMonth]
 
   def minusYears(years: Long): YearMonth = minus(years, YEARS)
 
